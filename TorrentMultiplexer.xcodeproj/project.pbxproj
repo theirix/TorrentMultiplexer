@@ -1,0 +1,294 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		813748A714DCA0750077A4A2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813748A614DCA0750077A4A2 /* Cocoa.framework */; };
+		813748B114DCA0750077A4A2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 813748AF14DCA0750077A4A2 /* InfoPlist.strings */; };
+		813748B314DCA0750077A4A2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 813748B214DCA0750077A4A2 /* main.m */; };
+		813748B714DCA0750077A4A2 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 813748B514DCA0750077A4A2 /* Credits.rtf */; };
+		813748BA14DCA0750077A4A2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 813748B914DCA0750077A4A2 /* AppDelegate.m */; };
+		813748BD14DCA0750077A4A2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 813748BB14DCA0750077A4A2 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		813748A214DCA0750077A4A2 /* TorrentMultiplexer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TorrentMultiplexer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		813748A614DCA0750077A4A2 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		813748A914DCA0750077A4A2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		813748AA14DCA0750077A4A2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		813748AB14DCA0750077A4A2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		813748AE14DCA0750077A4A2 /* TorrentMultiplexer-Info.plist */ = {isa = PBXFileReference; path = "TorrentMultiplexer-Info.plist"; sourceTree = "<group>"; };
+		813748B014DCA0750077A4A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		813748B214DCA0750077A4A2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		813748B414DCA0750077A4A2 /* TorrentMultiplexer-Prefix.pch */ = {isa = PBXFileReference; path = "TorrentMultiplexer-Prefix.pch"; sourceTree = "<group>"; };
+		813748B614DCA0750077A4A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		813748B814DCA0750077A4A2 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		813748B914DCA0750077A4A2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		813748BC14DCA0750077A4A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8137489F14DCA0750077A4A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				813748A714DCA0750077A4A2 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8137489714DCA0750077A4A2 = {
+			isa = PBXGroup;
+			children = (
+				813748AC14DCA0750077A4A2 /* TorrentMultiplexer */,
+				813748A514DCA0750077A4A2 /* Frameworks */,
+				813748A314DCA0750077A4A2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		813748A314DCA0750077A4A2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				813748A214DCA0750077A4A2 /* TorrentMultiplexer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		813748A514DCA0750077A4A2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				813748A614DCA0750077A4A2 /* Cocoa.framework */,
+				813748A814DCA0750077A4A2 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		813748A814DCA0750077A4A2 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				813748A914DCA0750077A4A2 /* AppKit.framework */,
+				813748AA14DCA0750077A4A2 /* CoreData.framework */,
+				813748AB14DCA0750077A4A2 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		813748AC14DCA0750077A4A2 /* TorrentMultiplexer */ = {
+			isa = PBXGroup;
+			children = (
+				813748B814DCA0750077A4A2 /* AppDelegate.h */,
+				813748B914DCA0750077A4A2 /* AppDelegate.m */,
+				813748BB14DCA0750077A4A2 /* MainMenu.xib */,
+				813748AD14DCA0750077A4A2 /* Supporting Files */,
+			);
+			path = TorrentMultiplexer;
+			sourceTree = "<group>";
+		};
+		813748AD14DCA0750077A4A2 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				813748AE14DCA0750077A4A2 /* TorrentMultiplexer-Info.plist */,
+				813748AF14DCA0750077A4A2 /* InfoPlist.strings */,
+				813748B214DCA0750077A4A2 /* main.m */,
+				813748B414DCA0750077A4A2 /* TorrentMultiplexer-Prefix.pch */,
+				813748B514DCA0750077A4A2 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		813748A114DCA0750077A4A2 /* TorrentMultiplexer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 813748C014DCA0750077A4A2 /* Build configuration list for PBXNativeTarget "TorrentMultiplexer" */;
+			buildPhases = (
+				8137489E14DCA0750077A4A2 /* Sources */,
+				8137489F14DCA0750077A4A2 /* Frameworks */,
+				813748A014DCA0750077A4A2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TorrentMultiplexer;
+			productName = TorrentMultiplexer;
+			productReference = 813748A214DCA0750077A4A2 /* TorrentMultiplexer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8137489914DCA0750077A4A2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "MSTU-RK6";
+			};
+			buildConfigurationList = 8137489C14DCA0750077A4A2 /* Build configuration list for PBXProject "TorrentMultiplexer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8137489714DCA0750077A4A2;
+			productRefGroup = 813748A314DCA0750077A4A2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				813748A114DCA0750077A4A2 /* TorrentMultiplexer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		813748A014DCA0750077A4A2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				813748B114DCA0750077A4A2 /* InfoPlist.strings in Resources */,
+				813748B714DCA0750077A4A2 /* Credits.rtf in Resources */,
+				813748BD14DCA0750077A4A2 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8137489E14DCA0750077A4A2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				813748B314DCA0750077A4A2 /* main.m in Sources */,
+				813748BA14DCA0750077A4A2 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		813748AF14DCA0750077A4A2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				813748B014DCA0750077A4A2 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		813748B514DCA0750077A4A2 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				813748B614DCA0750077A4A2 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		813748BB14DCA0750077A4A2 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				813748BC14DCA0750077A4A2 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		813748BE14DCA0750077A4A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		813748BF14DCA0750077A4A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		813748C114DCA0750077A4A2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TorrentMultiplexer/TorrentMultiplexer-Prefix.pch";
+				INFOPLIST_FILE = "TorrentMultiplexer/TorrentMultiplexer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		813748C214DCA0750077A4A2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TorrentMultiplexer/TorrentMultiplexer-Prefix.pch";
+				INFOPLIST_FILE = "TorrentMultiplexer/TorrentMultiplexer-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8137489C14DCA0750077A4A2 /* Build configuration list for PBXProject "TorrentMultiplexer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				813748BE14DCA0750077A4A2 /* Debug */,
+				813748BF14DCA0750077A4A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		813748C014DCA0750077A4A2 /* Build configuration list for PBXNativeTarget "TorrentMultiplexer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				813748C114DCA0750077A4A2 /* Debug */,
+				813748C214DCA0750077A4A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8137489914DCA0750077A4A2 /* Project object */;
+}
