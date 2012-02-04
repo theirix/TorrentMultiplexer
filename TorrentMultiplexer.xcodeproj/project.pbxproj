@@ -21,12 +21,12 @@
 		813748A914DCA0750077A4A2 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		813748AA14DCA0750077A4A2 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		813748AB14DCA0750077A4A2 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		813748AE14DCA0750077A4A2 /* TorrentMultiplexer-Info.plist */ = {isa = PBXFileReference; path = "TorrentMultiplexer-Info.plist"; sourceTree = "<group>"; };
+		813748AE14DCA0750077A4A2 /* TorrentMultiplexer-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TorrentMultiplexer-Info.plist"; sourceTree = "<group>"; };
 		813748B014DCA0750077A4A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		813748B214DCA0750077A4A2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		813748B414DCA0750077A4A2 /* TorrentMultiplexer-Prefix.pch */ = {isa = PBXFileReference; path = "TorrentMultiplexer-Prefix.pch"; sourceTree = "<group>"; };
+		813748B414DCA0750077A4A2 /* TorrentMultiplexer-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TorrentMultiplexer-Prefix.pch"; sourceTree = "<group>"; };
 		813748B614DCA0750077A4A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
-		813748B814DCA0750077A4A2 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		813748B814DCA0750077A4A2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		813748B914DCA0750077A4A2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		813748BC14DCA0750077A4A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
