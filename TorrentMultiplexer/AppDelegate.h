@@ -10,11 +10,4 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property (assign) IBOutlet NSWindow *window;
-@property (assign) IBOutlet NSButton *buttonStartTorrent;
-@property (assign) IBOutlet NSComboBox *comboSeedKind;
-@property (assign) IBOutlet NSMatrix *matrixTargetKind;
-
-- (IBAction)performStartTorrent:(id)sender;
-
 @end
