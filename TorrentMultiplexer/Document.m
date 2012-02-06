@@ -8,6 +8,7 @@
 
 #import "Document.h"
 #import "WindowController.h"
+#include "TorrentFacade.h"
 
 @implementation Document
 
@@ -68,7 +69,7 @@
         readSuccess = YES;
         [fileContents release];
     }
-    
+    nameForTorrent( "foo", NULL );
 //    if (outError) {
 //        *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
 //    }

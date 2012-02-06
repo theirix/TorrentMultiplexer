@@ -16,7 +16,31 @@
 		815A0A3914DF0AD500D29D52 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 815A0A3714DF0AD500D29D52 /* Document.m */; };
 		815A0A3A14DF0AD500D29D52 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815A0A3814DF0AD500D29D52 /* Document.xib */; };
 		815A0A4514DF214500D29D52 /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815A0A4414DF214500D29D52 /* WindowController.m */; };
+		818A570414DF638B0049E866 /* libsigc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818A570214DF638B0049E866 /* libsigc.framework */; };
+		818A570514DF638B0049E866 /* libtorrent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818A570314DF638B0049E866 /* libtorrent.framework */; };
+		818A570A14DF67580049E866 /* TorrentFacade.mm in Sources */ = {isa = PBXBuildFile; fileRef = 818A570914DF67580049E866 /* TorrentFacade.mm */; };
+		818A571014DF6AD40049E866 /* build_libsigc.sh in Resources */ = {isa = PBXBuildFile; fileRef = 818A570C14DF6AD30049E866 /* build_libsigc.sh */; };
+		818A571114DF6AD40049E866 /* build_libtorrent.sh in Resources */ = {isa = PBXBuildFile; fileRef = 818A570D14DF6AD30049E866 /* build_libtorrent.sh */; };
+		818A571214DF6AD40049E866 /* Info.libsigc.plist in Resources */ = {isa = PBXBuildFile; fileRef = 818A570E14DF6AD30049E866 /* Info.libsigc.plist */; };
+		818A571314DF6AD40049E866 /* Info.libtorrent.plist in Resources */ = {isa = PBXBuildFile; fileRef = 818A570F14DF6AD30049E866 /* Info.libtorrent.plist */; };
+		818A571514DF6D1D0049E866 /* libsigc.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 818A570214DF638B0049E866 /* libsigc.framework */; };
+		818A571614DF6D200049E866 /* libtorrent.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = 818A570314DF638B0049E866 /* libtorrent.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		818A571414DF6D000049E866 /* Copy Files */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				818A571514DF6D1D0049E866 /* libsigc.framework in Copy Files */,
+				818A571614DF6D200049E866 /* libtorrent.framework in Copy Files */,
+			);
+			name = "Copy Files";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		813748A214DCA0750077A4A2 /* TorrentMultiplexer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TorrentMultiplexer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,6 +61,14 @@
 		815A0A3814DF0AD500D29D52 /* Document.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Document.xib; sourceTree = "<group>"; };
 		815A0A4314DF214500D29D52 /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowController.h; sourceTree = "<group>"; };
 		815A0A4414DF214500D29D52 /* WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowController.m; sourceTree = "<group>"; };
+		818A570214DF638B0049E866 /* libsigc.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libsigc.framework; path = deps/libsigc.framework; sourceTree = "<group>"; };
+		818A570314DF638B0049E866 /* libtorrent.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = libtorrent.framework; path = deps/libtorrent.framework; sourceTree = "<group>"; };
+		818A570814DF64450049E866 /* TorrentFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TorrentFacade.h; sourceTree = "<group>"; };
+		818A570914DF67580049E866 /* TorrentFacade.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; path = TorrentFacade.mm; sourceTree = "<group>"; };
+		818A570C14DF6AD30049E866 /* build_libsigc.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = build_libsigc.sh; path = deps/build_libsigc.sh; sourceTree = "<group>"; };
+		818A570D14DF6AD30049E866 /* build_libtorrent.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = build_libtorrent.sh; path = deps/build_libtorrent.sh; sourceTree = "<group>"; };
+		818A570E14DF6AD30049E866 /* Info.libsigc.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.libsigc.plist; path = deps/Info.libsigc.plist; sourceTree = "<group>"; };
+		818A570F14DF6AD30049E866 /* Info.libtorrent.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.libtorrent.plist; path = deps/Info.libtorrent.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +77,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				813748A714DCA0750077A4A2 /* Cocoa.framework in Frameworks */,
+				818A570414DF638B0049E866 /* libsigc.framework in Frameworks */,
+				818A570514DF638B0049E866 /* libtorrent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,6 +105,7 @@
 		813748A514DCA0750077A4A2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				818A570114DF63410049E866 /* Depends */,
 				813748A614DCA0750077A4A2 /* Cocoa.framework */,
 				813748A814DCA0750077A4A2 /* Other Frameworks */,
 			);
@@ -96,9 +131,11 @@
 				815A0A3714DF0AD500D29D52 /* Document.m */,
 				815A0A3814DF0AD500D29D52 /* Document.xib */,
 				813748BB14DCA0750077A4A2 /* MainMenu.xib */,
-				813748AD14DCA0750077A4A2 /* Supporting Files */,
 				815A0A4314DF214500D29D52 /* WindowController.h */,
 				815A0A4414DF214500D29D52 /* WindowController.m */,
+				818A570814DF64450049E866 /* TorrentFacade.h */,
+				818A570914DF67580049E866 /* TorrentFacade.mm */,
+				813748AD14DCA0750077A4A2 /* Supporting Files */,
 			);
 			path = TorrentMultiplexer;
 			sourceTree = "<group>";
@@ -115,6 +152,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		818A570114DF63410049E866 /* Depends */ = {
+			isa = PBXGroup;
+			children = (
+				818A570B14DF6ABC0049E866 /* build */,
+				818A570214DF638B0049E866 /* libsigc.framework */,
+				818A570314DF638B0049E866 /* libtorrent.framework */,
+			);
+			name = Depends;
+			sourceTree = "<group>";
+		};
+		818A570B14DF6ABC0049E866 /* build */ = {
+			isa = PBXGroup;
+			children = (
+				818A570C14DF6AD30049E866 /* build_libsigc.sh */,
+				818A570D14DF6AD30049E866 /* build_libtorrent.sh */,
+				818A570E14DF6AD30049E866 /* Info.libsigc.plist */,
+				818A570F14DF6AD30049E866 /* Info.libtorrent.plist */,
+			);
+			name = build;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -125,6 +183,7 @@
 				8137489E14DCA0750077A4A2 /* Sources */,
 				8137489F14DCA0750077A4A2 /* Frameworks */,
 				813748A014DCA0750077A4A2 /* Resources */,
+				818A571414DF6D000049E866 /* Copy Files */,
 			);
 			buildRules = (
 			);
@@ -170,6 +229,10 @@
 				813748B714DCA0750077A4A2 /* Credits.rtf in Resources */,
 				813748BD14DCA0750077A4A2 /* MainMenu.xib in Resources */,
 				815A0A3A14DF0AD500D29D52 /* Document.xib in Resources */,
+				818A571014DF6AD40049E866 /* build_libsigc.sh in Resources */,
+				818A571114DF6AD40049E866 /* build_libtorrent.sh in Resources */,
+				818A571214DF6AD40049E866 /* Info.libsigc.plist in Resources */,
+				818A571314DF6AD40049E866 /* Info.libtorrent.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,6 +247,7 @@
 				813748BA14DCA0750077A4A2 /* AppDelegate.m in Sources */,
 				815A0A3914DF0AD500D29D52 /* Document.m in Sources */,
 				815A0A4514DF214500D29D52 /* WindowController.m in Sources */,
+				818A570A14DF67580049E866 /* TorrentFacade.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,8 +329,16 @@
 		813748C114DCA0750077A4A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/deps\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TorrentMultiplexer/TorrentMultiplexer-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/deps/libsigc.framework/Headers",
+					"$(SRCROOT)/deps/libtorrent.framework/Headers",
+				);
 				INFOPLIST_FILE = "TorrentMultiplexer/TorrentMultiplexer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -276,8 +348,16 @@
 		813748C214DCA0750077A4A2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/deps\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TorrentMultiplexer/TorrentMultiplexer-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(SRCROOT)/deps/libsigc.framework/Headers",
+					"$(SRCROOT)/deps/libtorrent.framework/Headers",
+				);
 				INFOPLIST_FILE = "TorrentMultiplexer/TorrentMultiplexer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
