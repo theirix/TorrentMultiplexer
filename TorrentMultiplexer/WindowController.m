@@ -49,7 +49,7 @@
     NSImage* imageObj = [[NSImage alloc] initWithContentsOfFile:imageName];
     if (imageObj == nil)
         @throw [NSException exceptionWithName:@"FileNotFoundException" reason:@"Image not found" userInfo:nil];
-//    [imageObj release];
+    [imageObj autorelease];
     return imageObj;
 }
 
@@ -81,6 +81,19 @@
     NSLog(@"TODO");
     NSString* selection = [[self comboSeedKind] objectValueOfSelectedItem];
     NSLog(@"Selected: %@", selection); 
+    NSError *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:kLSCannotSetInfoErr userInfo:NULL];
+    [self presentError:error];
+}
+
+- (IBAction)performDefaultMagnetHandler:(id)sender {
+    NSLog(@"Setting defaults");
+    NSString *bundleID = [[NSBundle mainBundle] bundleIdentifier];
+    OSStatus result = LSSetDefaultHandlerForURLScheme((CFStringRef)@"magnet", (CFStringRef)bundleID);
+    if (result != 0)
+    {
+        NSError *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:result userInfo:NULL];
+        [self presentError:error];
+    }
 }
 
 @end

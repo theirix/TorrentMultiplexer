@@ -7,21 +7,54 @@
 //
 
 #import "AppDelegate.h"
+#import "DocumentController.h"
+#import "Document.h"
 
 @implementation AppDelegate
+
+- (id)init
+{
+    NSLog(@"AppDelegate:init");
+    if (self = [super init])
+    {
+        [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self
+            andSelector: @selector(handleGetURLEvent:withReplyEvent:)
+            forEventClass:kInternetEventClass andEventID:kAEGetURL];
+
+    }
+    return self;
+}
 
 - (void)dealloc
 {
     [super dealloc];
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+- (void)applicationWillFinishLaunching:(NSNotification *)aNotification
 {
+    [[[DocumentController alloc] init] release];
 }
 
-- (BOOL) applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)theApplication
+- (void)handleGetURLEvent:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)replyEvent
 {
-    return YES;
+    if ([event eventID] == kAEGetURL)
+    {
+        NSAppleEventDescriptor *directObject = [event paramDescriptorForKeyword: keyDirectObject];
+        NSString *urlString = nil;
+        if ([directObject descriptorType] == typeAEList)
+        {
+            for (NSInteger i = 1; i <= [directObject numberOfItems]; i++)
+                if ((urlString = [[directObject descriptorAtIndex: i] stringValue]))
+                    break;
+        }
+        else
+            urlString = [directObject stringValue];
+        if (urlString)
+        {
+           [[NSDocumentController sharedDocumentController]
+                openDocumentWithContentsOfURL:[NSURL URLWithString:urlString] display:YES completionHandler:nil];
+        }
+    }
 }
 
 @end

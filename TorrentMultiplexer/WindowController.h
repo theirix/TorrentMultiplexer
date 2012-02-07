@@ -31,5 +31,6 @@ typedef enum {
 
 - (IBAction)selectTargetKind:(id)sender;
 - (IBAction)performStartTorrent:(id)sender;
+- (IBAction)performDefaultMagnetHandler:(id)sender;
 
 @end

@@ -22,21 +22,33 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
 {
     self = [super init];
     if (self) {
+        NSLog(@"Doc init");
         torrentDict = nil;
         magnetURL = nil;
         torrentType = nil;
+        [self setHasUndoManager:NO];
+    }
+    return self;
+}
+
+- (id)initWithContentsOfURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
+{
+    self = [super initWithContentsOfURL:absoluteURL ofType:typeName error:outError];
+    if (self)
+    {
+        NSLog(@"Init with url %@ type %@", absoluteURL, typeName);
     }
     return self;
 }
 
 - (void)dealloc
 {
-    if (torrentDict)
-        [torrentDict release];
-    if (magnetURL)
-        [magnetURL release];
-    if (torrentType)
-        [torrentType release];
+//    if (torrentDict)
+//        [torrentDict release];
+//    if (magnetURL)
+//        [magnetURL release];
+//    if (torrentType)
+//        [torrentType release];
     [super dealloc];
 }
 
@@ -55,10 +67,6 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
 
 - (NSData *)dataOfType:(NSString *)typeName error:(NSError **)outError
 {
-    /*
-     Insert code here to write your document to data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning nil.
-    You can also choose to override -fileWrapperOfType:error:, -writeToURL:ofType:error:, or -writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-    */
     if (outError) {
         *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
     }
@@ -107,25 +115,22 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
     }
 }
 
-- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
+
+- (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {
-    /*
-    Insert code here to read your document from the given data of the specified type. If outError != NULL, ensure that you create and set an appropriate error when returning NO.
-    You can also choose to override -readFromFileWrapper:ofType:error: or -readFromURL:ofType:error: instead.
-    If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
-    */
     BOOL readSuccess = NO;
 
-    if (data)
+    if (absoluteURL)
     {   
         torrentType = [typeName copy];
-        NSLog(@"Readind document type %@", torrentType);        
+        NSLog(@"Readind document type %@, url %@", torrentType, absoluteURL);        
         if ([torrentType isEqual:kTorrentTypeFile])
         {
-            torrentDict = [GEBEncoding objectFromEncodedData:data withTypeAdvisor:^(NSArray *keyStack) {
+            NSData *fileData = [NSData dataWithContentsOfURL:absoluteURL];
+            torrentDict = [GEBEncoding objectFromEncodedData:fileData withTypeAdvisor:^(NSArray *keyStack) {
                 return [keyStack count] > 0 && [(NSString*)[keyStack lastObject] isEqualToString:@"pieces"]
-                    ? GEBEncodedDataType
-                    : GEBEncodedStringType;            
+                ? GEBEncodedDataType
+                : GEBEncodedStringType;            
             }];
             magnetURL = nil;
             readSuccess = torrentDict != NULL;
@@ -133,7 +138,8 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
         else if ([torrentType isEqual:kTorrentTypeMagnet])
         {
             torrentDict = nil;
-            magnetURL = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+            magnetURL = [absoluteURL copy];
+            readSuccess = absoluteURL != NULL;
         }
         else
         {
@@ -150,7 +156,7 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
     if (!readSuccess && outError) {
         *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:unimpErr userInfo:NULL];
     }
-    return readSuccess;
+    return readSuccess;    
 }
 
 + (BOOL)autosavesInPlace
@@ -175,8 +181,8 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
     }
     else if ([torrentType isEqual:kTorrentTypeMagnet])
     {
-        NSAssert(magnetURL && [magnetURL length] > 0, @"Magnet URL");
-        return magnetURL;
+        NSAssert(magnetURL, @"Magnet URL");
+        return [magnetURL absoluteString];
     }
     return @"<none>";
 }

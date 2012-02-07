@@ -15,7 +15,7 @@ extern NSString * const kTorrentTypeMagnet;
 
 @private
     NSObject *torrentDict;
-    NSString *magnetURL;
+    NSURL *magnetURL;
     NSString *torrentType;
 }
 
