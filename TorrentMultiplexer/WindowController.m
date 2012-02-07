@@ -18,8 +18,6 @@
 @synthesize labelFileType = _labelFileType;
 @synthesize labelTorrentName = _labelTorrentName;
 @synthesize imageViewIcon = _imageViewIcon;
-@synthesize comboLocalTorrentApp = _comboLocalTorrentApp;
-@synthesize comboLocalMagnetApp = _comboLocalMagnetApp;
 
 - (id)initWithWindowNibName:(NSString*)windowNibName
 {
@@ -32,58 +30,14 @@
         dictImageName = [NSDictionary dictionaryWithObjectsAndKeys:
                          @"bittorrent", kTorrentTypeFile,     
                          @"magnet", kTorrentTypeMagnet, 
-                         nil];    
-        
-        torrentHandlers = [NSMutableArray arrayWithArray:
-                           (NSArray*)LSCopyAllRoleHandlersForContentType((CFStringRef)@"org.bittorrent.torrent",
-                                                                         kLSRolesAll)];
-        magnetHandlers = [NSMutableArray arrayWithArray:
-                          (NSArray*)LSCopyAllHandlersForURLScheme((CFStringRef)@"magnet")];
-        
-        NSString *bundleSelfId = [[[NSBundle mainBundle] bundleIdentifier] lowercaseString];
-        [torrentHandlers removeObject:bundleSelfId];
-        [magnetHandlers removeObject:bundleSelfId];                
+                         nil];                    
     }
     return self;
-}
-
-- (void) checkError:(OSStatus)status
-{
-    if (status != 0)
-    {
-        NSError *error = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:NULL];
-        [self presentError:error];
-    }
-}
-
-- (void) fillCombo:(NSComboBox*)comboBox withApps:(NSArray*)bundleIds
-{
-    NSAssert(bundleIds, @"No ids specified");
-    for (NSString *bundleId in bundleIds)
-    {
-        NSString *name = nil;
-        CFURLRef cfUrl;
-        OSStatus status = LSFindApplicationForInfo(kLSUnknownCreator, (CFStringRef)bundleId, NULL, NULL, &cfUrl);
-        [self checkError:status];
-        NSURL *url = (NSURL*)cfUrl;
-        NSBundle *bundle = [NSBundle bundleWithURL:url];
-        if (bundle)
-        {
-            name = [[bundle infoDictionary] valueForKey:@"CFBundleName"];
-        }
-        [url release];
-        if (!name)
-            name = [bundleId copy];        
-        [comboBox addItemWithObjectValue:name];
-    }
 }
 
 - (void)awakeFromNib
 {
     NSLog(@"Awaked"); 
-    
-    [self fillCombo:[self comboLocalTorrentApp] withApps:torrentHandlers];
-    [self fillCombo:[self comboLocalMagnetApp] withApps:magnetHandlers];
 }
 
 - (NSImage*) loadImage:(NSString*)name
@@ -151,9 +105,15 @@
     switch (seedKindSelection)
     {
         case ttQuark:
+        {
+            NSString *serverMask = [[NSUserDefaults standardUserDefaults] stringForKey:PREFMaskQuark];
+            [self copyTorrentToServer:serverMask withSeedKind:selection error:&error];
+            break;
+        }
         case ttAtom:
         {
-            [self copyTorrentToServer:seedKindSelection withSeedKind:selection error:&error];
+            NSString *serverMask = [[NSUserDefaults standardUserDefaults] stringForKey:PREFMaskAtom];
+            [self copyTorrentToServer:serverMask withSeedKind:selection error:&error];
             break;
         }
         case ttSaveToFile:
@@ -163,24 +123,14 @@
         }
         case ttLocalFile:
         {
-            NSInteger selection = [[self comboLocalTorrentApp] indexOfSelectedItem];
-            if (selection != -1)
-            {
-                [self openDocumentWithApplicaton:[torrentHandlers objectAtIndex:selection]];
-            }
-            else
-                [Util createError:@"No application selected"];
+            NSString *localBundleId = [[NSUserDefaults standardUserDefaults] stringForKey:PREFAppTorrent];
+            [self openDocumentWithApplicaton:localBundleId error:&error];
             break;
         }
         case ttLocalMagnet:
         {
-            NSInteger selection = [[self comboLocalMagnetApp] indexOfSelectedItem];
-            if (selection != -1)
-            {
-                [self openDocumentWithApplicaton:[magnetHandlers objectAtIndex:selection]];
-            }
-            else
-                [Util createError:@"No application selected"];
+            NSString *localBundleId = [[NSUserDefaults standardUserDefaults] stringForKey:PREFAppMagnet];
+            [self openDocumentWithApplicaton:localBundleId error:&error];
             break;
         }
             
@@ -192,37 +142,45 @@
 
 }
 
-- (void)openDocumentWithApplicaton:(NSString*)bundleId
+- (void)openDocumentWithApplicaton:(NSString*)bundleId error:(NSError**)outError
 {
     NSLog(@"Opening document in application: %@", bundleId);
+    
+    if (bundleId == nil || [bundleId length] == 0)
+    {
+        [Util makeError:@"No local application specified.\nPlease check preferences" error:outError];
+        return;
+    }
     
     LSLaunchURLSpec launchSpec;
     memset(&launchSpec, 0, sizeof(LSLaunchURLSpec));
     launchSpec.itemURLs = (CFArrayRef)[NSArray arrayWithObject:[[self document] fileURL]];
     OSStatus status = LSFindApplicationForInfo(kLSUnknownCreator, (CFStringRef)bundleId, 
                                       NULL, NULL, &launchSpec.appURL);
-    [self checkError:status];
+    if (status) {
+        [Util makeErrorFromStatus:status error:outError];
+        return;
+    }
     
     status = LSOpenFromURLSpec(&launchSpec, NULL);
-    [self checkError:status];
+    if (status) {
+        [Util makeErrorFromStatus:status error:outError];
+        return;
+    }
 }
 
-- (void)copyTorrentToServer:(TorrentTarget)seedKindSelection 
-                            withSeedKind:(NSString*)seedKind error:(NSError**)outError
+- (void)copyTorrentToServer:(NSString*)serverMask withSeedKind:(NSString*)seedKind error:(NSError**)outError
 {
     NSAssert(outError, @"No error");
     
-    NSString *serverName = nil;
-    if (seedKindSelection == ttQuark)
-        serverName = @"quark";
-    else if (seedKindSelection == ttAtom)
-        serverName = @"atom";
-    else
-        *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:NULL];
-
 //    NSString *serverPathFormat = @"%@.omniverse.ru:rtorrent/watch-%@";
-    NSString *serverPathFormat = @"%@.omniverse.ru:";    
-    NSString *serverPath = [NSString stringWithFormat:serverPathFormat, serverName, seedKind];
+    if (serverMask == nil || [serverMask length] == 0)
+    {
+        [Util makeError:@"No server mask specified.\nPlease check preferences" error:outError];
+        return;
+    }
+        
+    NSString *serverPath = [NSString stringWithFormat:serverMask, seedKind];
     
     NSLog(@"Copying torrent to server: %@", serverPath);
     
@@ -243,23 +201,6 @@
         NSLog(@"Task succeeded.");
     else
         *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorNetworkConnectionLost userInfo:NULL];
-}
-
-- (IBAction)performDefaultTorrentHandler:(id)sender
-{
-    NSLog(@"Setting default torrent");
-    OSStatus result = LSSetDefaultRoleHandlerForContentType((CFStringRef)@"org.bittorrent.torrent",
-                                                             kLSRolesViewer,
-                                                            (CFStringRef)[[NSBundle mainBundle] bundleIdentifier]);
-    [self checkError:result];
-}
-
-- (IBAction)performDefaultMagnetHandler:(id)sender 
-{
-    NSLog(@"Setting default magnet");
-    OSStatus result = LSSetDefaultHandlerForURLScheme((CFStringRef)@"magnet",
-                                                      (CFStringRef)[[NSBundle mainBundle] bundleIdentifier]);
-    [self checkError:result];
 }
 
 @end

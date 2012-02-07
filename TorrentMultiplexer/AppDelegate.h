@@ -8,6 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class PreferencesController;
+
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
+- (IBAction)showPreferences:(id)sender;
 @end
+
+

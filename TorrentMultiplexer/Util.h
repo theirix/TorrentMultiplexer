@@ -8,8 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const APPId;
+
+extern NSString * const PREFAppTorrent;
+extern NSString * const PREFAppMagnet;
+extern NSString * const PREFMaskQuark;
+extern NSString * const PREFMaskAtom;
+
 @interface Util : NSObject
 
-+ (NSError*)createError:(NSString*)description;
++ (void)makeError:(NSString*)description  error:(NSError**)outError;
++ (void)checkError:(OSStatus)status withResponder:(NSResponder*)responder;
++ (void)makeErrorFromStatus:(OSStatus)status error:(NSError**)outError;
 
 @end

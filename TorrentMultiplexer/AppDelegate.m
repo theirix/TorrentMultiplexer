@@ -8,7 +8,9 @@
 
 #import "AppDelegate.h"
 #import "DocumentController.h"
+#import "PreferencesController.h"
 #import "Document.h"
+#import "Util.h"
 
 @implementation AppDelegate
 
@@ -23,6 +25,18 @@
 
     }
     return self;
+}
+
++ (void) initialize
+{
+    NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
+    
+    [defaultValues setObject:@"" forKey:PREFAppTorrent];
+    [defaultValues setObject:@"" forKey:PREFAppMagnet];
+    [defaultValues setObject:@"localhost" forKey:PREFMaskQuark];    
+    [defaultValues setObject:@"localhost" forKey:PREFMaskAtom];        
+	
+    [[NSUserDefaults standardUserDefaults] registerDefaults: defaultValues];
 }
 
 - (void)dealloc
@@ -55,6 +69,11 @@
                 openDocumentWithContentsOfURL:[NSURL URLWithString:urlString] display:YES completionHandler:nil];
         }
     }
+}
+
+- (IBAction)showPreferences:(id)sender {
+    PreferencesController *preferencesController = [[PreferencesController alloc] init];
+    [preferencesController showWindow:self];
 }
 
 @end
