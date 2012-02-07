@@ -20,6 +20,9 @@ extern NSString * const kTorrentTypeMagnet;
 }
 
 - (NSString*) nameForTorrent;
+- (NSURL*) announceURL;
+
 @property(readonly) NSString *torrentType;
+@property(readonly) NSURL *magnetURL;
 
 @end

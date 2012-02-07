@@ -16,6 +16,7 @@ NSString * const kTorrentTypeFile = @"BitTorrent Document";
 NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
 
 @synthesize torrentType;
+@synthesize magnetURL;
 
 
 - (id)init
@@ -176,6 +177,20 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
         return [magnetURL absoluteString];
     }
     return @"<none>";
+}
+
+- (NSURL*) announceURL
+{
+    if ([torrentType isEqual:kTorrentTypeFile])
+    {
+        NSAssert(torrentDict, @"Torrent data");
+        NSString *node = (NSString*)[(NSDictionary*)torrentDict objectForKey:@"announce"];
+        if (node && [node length] > 0)
+        {
+            return [NSURL URLWithString:node];
+        }
+    }
+    return nil;
 }
 
 @end

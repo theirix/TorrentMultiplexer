@@ -89,16 +89,16 @@
 						<object class="NSTextField" id="109077444">
 							<reference key="NSNextResponder" ref="828736080"/>
 							<int key="NSvFlags">266</int>
-							<string key="NSFrame">{{70, 171}, {352, 17}}</string>
+							<string key="NSFrame">{{70, 181}, {352, 17}}</string>
 							<reference key="NSSuperview" ref="828736080"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="343955813"/>
+							<reference key="NSNextKeyView" ref="984368471"/>
 							<string key="NSReuseIdentifierKey">_NS:3944</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="950988846">
 								<int key="NSCellFlags">68288064</int>
 								<int key="NSCellFlags2">272630784</int>
-								<string key="NSContents">What is a file</string>
+								<string key="NSContents">Name</string>
 								<reference key="NSSupport" ref="878579909"/>
 								<string key="NSCellIdentifier">_NS:3944</string>
 								<reference key="NSControlView" ref="109077444"/>
@@ -120,6 +120,26 @@
 										<bytes key="NSWhite">MAA</bytes>
 									</object>
 								</object>
+							</object>
+						</object>
+						<object class="NSTextField" id="984368471">
+							<reference key="NSNextResponder" ref="828736080"/>
+							<int key="NSvFlags">266</int>
+							<string key="NSFrame">{{70, 162}, {352, 17}}</string>
+							<reference key="NSSuperview" ref="828736080"/>
+							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="433019096"/>
+							<string key="NSReuseIdentifierKey">_NS:3944</string>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSTextFieldCell" key="NSCell" id="60346468">
+								<int key="NSCellFlags">68288064</int>
+								<int key="NSCellFlags2">272630784</int>
+								<string key="NSContents">Announce</string>
+								<reference key="NSSupport" ref="878579909"/>
+								<string key="NSCellIdentifier">_NS:3944</string>
+								<reference key="NSControlView" ref="984368471"/>
+								<reference key="NSBackgroundColor" ref="334770517"/>
+								<reference key="NSTextColor" ref="375677624"/>
 							</object>
 						</object>
 						<object class="NSImageView" id="789836277">
@@ -161,7 +181,7 @@
 						<object class="NSTextField" id="182455500">
 							<reference key="NSNextResponder" ref="828736080"/>
 							<int key="NSvFlags">266</int>
-							<string key="NSFrame">{{70, 196}, {352, 17}}</string>
+							<string key="NSFrame">{{70, 199}, {379, 17}}</string>
 							<reference key="NSSuperview" ref="828736080"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="109077444"/>
@@ -170,7 +190,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="839722529">
 								<int key="NSCellFlags">68288064</int>
 								<int key="NSCellFlags2">272630784</int>
-								<string key="NSContents">Label</string>
+								<string key="NSContents">Torrent type</string>
 								<reference key="NSSupport" ref="878579909"/>
 								<string key="NSCellIdentifier">_NS:3944</string>
 								<reference key="NSControlView" ref="182455500"/>
@@ -295,7 +315,7 @@
 							<string key="NSFrame">{{235, 131}, {257, 17}}</string>
 							<reference key="NSSuperview" ref="828736080"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="310048957"/>
+							<reference key="NSNextKeyView" ref="647271583"/>
 							<string key="NSReuseIdentifierKey">_NS:3944</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="936773166">
@@ -315,7 +335,7 @@
 							<string key="NSFrame">{{32, 21}, {152, 102}}</string>
 							<reference key="NSSuperview" ref="828736080"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="246094433"/>
+							<reference key="NSNextKeyView" ref="310048957"/>
 							<bool key="NSEnabled">YES</bool>
 							<int key="NSNumRows">5</int>
 							<int key="NSNumCols">1</int>
@@ -428,22 +448,22 @@
 							<reference key="NSBackgroundColor" ref="334770517"/>
 							<reference key="NSCellBackgroundColor" ref="334770517"/>
 						</object>
-						<object class="NSTextField" id="343955813">
+						<object class="NSTextField" id="433019096">
 							<reference key="NSNextResponder" ref="828736080"/>
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{17, 131}, {93, 17}}</string>
 							<reference key="NSSuperview" ref="828736080"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="647271583"/>
+							<reference key="NSNextKeyView" ref="246094433"/>
 							<string key="NSReuseIdentifierKey">_NS:3944</string>
 							<bool key="NSEnabled">YES</bool>
-							<object class="NSTextFieldCell" key="NSCell" id="682476888">
+							<object class="NSTextFieldCell" key="NSCell" id="541613485">
 								<int key="NSCellFlags">68288064</int>
 								<int key="NSCellFlags2">272630784</int>
 								<string key="NSContents">Torrent target</string>
 								<reference key="NSSupport" ref="878579909"/>
 								<string key="NSCellIdentifier">_NS:3944</string>
-								<reference key="NSControlView" ref="343955813"/>
+								<reference key="NSControlView" ref="433019096"/>
 								<reference key="NSBackgroundColor" ref="334770517"/>
 								<reference key="NSTextColor" ref="375677624"/>
 							</object>
@@ -488,14 +508,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">labelFileType</string>
-						<reference key="source" ref="512844837"/>
-						<reference key="destination" ref="182455500"/>
-					</object>
-					<int key="connectionID">100070</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">labelTorrentName</string>
 						<reference key="source" ref="512844837"/>
 						<reference key="destination" ref="109077444"/>
@@ -533,6 +545,22 @@
 						<reference key="destination" ref="647271583"/>
 					</object>
 					<int key="connectionID">100065</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">labelTorrentAnnounce</string>
+						<reference key="source" ref="512844837"/>
+						<reference key="destination" ref="984368471"/>
+					</object>
+					<int key="connectionID">100112</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">labelTorrentType</string>
+						<reference key="source" ref="512844837"/>
+						<reference key="destination" ref="182455500"/>
+					</object>
+					<int key="connectionID">100113</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -619,13 +647,14 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="789836277"/>
-							<reference ref="109077444"/>
-							<reference ref="182455500"/>
 							<reference ref="11614017"/>
 							<reference ref="647271583"/>
-							<reference ref="343955813"/>
+							<reference ref="433019096"/>
 							<reference ref="246094433"/>
 							<reference ref="310048957"/>
+							<reference ref="109077444"/>
+							<reference ref="182455500"/>
+							<reference ref="984368471"/>
 						</object>
 						<reference key="parent" ref="697478962"/>
 					</object>
@@ -759,17 +788,31 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">100102</int>
-						<reference key="object" ref="343955813"/>
+						<reference key="object" ref="433019096"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="682476888"/>
+							<reference ref="541613485"/>
 						</object>
 						<reference key="parent" ref="828736080"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">100103</int>
-						<reference key="object" ref="682476888"/>
-						<reference key="parent" ref="343955813"/>
+						<reference key="object" ref="541613485"/>
+						<reference key="parent" ref="433019096"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">100109</int>
+						<reference key="object" ref="984368471"/>
+						<object class="NSMutableArray" key="children">
+							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="60346468"/>
+						</object>
+						<reference key="parent" ref="828736080"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">100110</int>
+						<reference key="object" ref="60346468"/>
+						<reference key="parent" ref="984368471"/>
 					</object>
 				</object>
 			</object>
@@ -806,6 +849,8 @@
 					<string>100081.IBPluginDependency</string>
 					<string>100102.IBPluginDependency</string>
 					<string>100103.IBPluginDependency</string>
+					<string>100109.IBPluginDependency</string>
+					<string>100110.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -843,6 +888,8 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
+					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -857,7 +904,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">100106</int>
+			<int key="maxID">100113</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -904,8 +951,9 @@
 							<string>buttonStartTorrent</string>
 							<string>comboSeedKind</string>
 							<string>imageViewIcon</string>
-							<string>labelFileType</string>
+							<string>labelTorrentAnnounce</string>
 							<string>labelTorrentName</string>
+							<string>labelTorrentType</string>
 							<string>matrixTarget</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -913,6 +961,7 @@
 							<string>NSButton</string>
 							<string>NSComboBox</string>
 							<string>NSImageView</string>
+							<string>NSTextField</string>
 							<string>NSTextField</string>
 							<string>NSTextField</string>
 							<string>NSMatrix</string>
@@ -925,8 +974,9 @@
 							<string>buttonStartTorrent</string>
 							<string>comboSeedKind</string>
 							<string>imageViewIcon</string>
-							<string>labelFileType</string>
+							<string>labelTorrentAnnounce</string>
 							<string>labelTorrentName</string>
+							<string>labelTorrentType</string>
 							<string>matrixTarget</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -944,11 +994,15 @@
 								<string key="candidateClassName">NSImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">labelFileType</string>
+								<string key="name">labelTorrentAnnounce</string>
 								<string key="candidateClassName">NSTextField</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">labelTorrentName</string>
+								<string key="candidateClassName">NSTextField</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">labelTorrentType</string>
 								<string key="candidateClassName">NSTextField</string>
 							</object>
 							<object class="IBToOneOutletInfo">

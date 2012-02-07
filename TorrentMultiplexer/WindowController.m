@@ -15,9 +15,10 @@
 @synthesize buttonStartTorrent = _buttonStartTorrent;
 @synthesize comboSeedKind = _comboSeedKind;
 @synthesize matrixTarget = _matrixTarget;
-@synthesize labelFileType = _labelFileType;
+@synthesize labelTorrentType = _labelFileType;
 @synthesize labelTorrentName = _labelTorrentName;
 @synthesize imageViewIcon = _imageViewIcon;
+@synthesize labelTorrentAnnounce = _labelTorrentAnnounce;
 
 - (id)initWithWindowNibName:(NSString*)windowNibName
 {
@@ -55,10 +56,19 @@
     NSLog(@"window loaded");  
     if ([self document])
     {
-        NSString *torrentTitle = [(Document*)[self document] nameForTorrent];
         NSString *type = [[self document] torrentType];
+        NSString *torrentTitle = [[self document] nameForTorrent];
+        NSString *torrentAnnounce;
+        if ([[self document] announceURL])
+            torrentAnnounce = [NSString stringWithFormat:@"Announce: %@", [[self document] announceURL]];
+        else
+            torrentAnnounce = @"";        
+        
+        TorrentTarget seedKindSelection = [type isEqual:kTorrentTypeFile] ? ttQuark: ttSaveToFile;
+
         [[self labelTorrentName] setStringValue:torrentTitle];
-        [[self labelFileType] setStringValue:[dictTorrentType objectForKey:type]];
+        [[self labelTorrentType] setStringValue:[dictTorrentType objectForKey:type]];
+        [[self labelTorrentAnnounce] setStringValue:torrentAnnounce];        
         [[self imageViewIcon] setImage:[self loadImage:[dictImageName objectForKey:type]]];
         
         BOOL flag = [type isEqualToString:kTorrentTypeFile];
@@ -69,23 +79,23 @@
         [[[self matrixTarget] cellAtRow:ttSaveToFile column:0] setEnabled:!flag];
         
         [[self comboSeedKind] selectItemAtIndex:0];
-        TorrentTarget seedKindSelection = ttQuark;
-        for (NSInteger i = 0; i < ([[self matrixTarget] cellSize]).height; ++i)
-        {
-            if ([[[self matrixTarget] cellAtRow:i column:0] isEnabled])
-            {
-                [[self matrixTarget] selectCellAtRow:i column:0];
-                break;
-            }
-        }
-       
         [[self comboSeedKind] setEnabled:(seedKindSelection == ttQuark)];
+        [[self matrixTarget] selectCellAtRow:seedKindSelection column:0];
+        
     }
 }
 
 - (void)dealloc
 {
     [super dealloc];
+}
+
+- (NSString *)windowTitleForDocumentDisplayName:(NSString *)displayName
+{
+    if ([[[self document] torrentType] isEqual:kTorrentTypeMagnet])
+        return [[[self document] magnetURL] absoluteString];
+    else
+        return [super windowTitleForDocumentDisplayName:displayName];
 }
 
 - (IBAction)selectTargetKind:(id)sender {
@@ -101,7 +111,7 @@
     TorrentTarget seedKindSelection = (TorrentTarget)[[self matrixTarget] selectedRow];
     NSString *type = [[self document] torrentType];
     
-    NSError *error = nil;
+    __block NSError *error = nil;
     switch (seedKindSelection)
     {
         case ttQuark:
@@ -119,6 +129,20 @@
         case ttSaveToFile:
         {
             NSAssert([type isEqualToString:kTorrentTypeMagnet], @"Wrong torrent type");
+            NSLog(@"Saving magnet to file");
+            NSSavePanel *savePanel = [NSSavePanel savePanel];
+            [savePanel setAllowedFileTypes:[NSArray arrayWithObject:@"torrent"]];
+            [savePanel setNameFieldStringValue:@"magnet.torrent"];
+            [savePanel beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
+                if (result == NSFileHandlingPanelOKButton)
+                {
+                    [savePanel orderOut:[self window]];
+                    NSURL *targetURL = [savePanel URL];
+                    NSString *content = [[[self document] fileURL] absoluteString];
+                    [content writeToURL:targetURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
+                }
+            }];
+            
             break;
         }
         case ttLocalFile:
