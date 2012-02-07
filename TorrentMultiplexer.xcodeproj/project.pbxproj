@@ -21,6 +21,7 @@
 		818A573914E070650049E866 /* bittorrent.png in Resources */ = {isa = PBXBuildFile; fileRef = 818A573714E070650049E866 /* bittorrent.png */; };
 		818A573A14E070650049E866 /* magnet.png in Resources */ = {isa = PBXBuildFile; fileRef = 818A573814E070650049E866 /* magnet.png */; };
 		818A573E14E07B770049E866 /* main.icns in Resources */ = {isa = PBXBuildFile; fileRef = 818A573D14E07B770049E866 /* main.icns */; };
+		81CC436E14E13E9F00B66C66 /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC436D14E13E9F00B66C66 /* DocumentController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		818A573714E070650049E866 /* bittorrent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bittorrent.png; path = Images/bittorrent.png; sourceTree = "<group>"; };
 		818A573814E070650049E866 /* magnet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = magnet.png; path = Images/magnet.png; sourceTree = "<group>"; };
 		818A573D14E07B770049E866 /* main.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = main.icns; path = Images/main.icns; sourceTree = "<group>"; };
+		81CC436C14E13E9F00B66C66 /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
+		81CC436D14E13E9F00B66C66 /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,16 +105,18 @@
 		813748AC14DCA0750077A4A2 /* TorrentMultiplexer */ = {
 			isa = PBXGroup;
 			children = (
-				818A572A14DFC13D0049E866 /* GEBEncoding */,
-				813748B814DCA0750077A4A2 /* AppDelegate.h */,
 				813748B914DCA0750077A4A2 /* AppDelegate.m */,
-				815A0A3614DF0AD500D29D52 /* Document.h */,
+				813748B814DCA0750077A4A2 /* AppDelegate.h */,
 				815A0A3714DF0AD500D29D52 /* Document.m */,
+				815A0A3614DF0AD500D29D52 /* Document.h */,
+				81CC436D14E13E9F00B66C66 /* DocumentController.m */,
+				81CC436C14E13E9F00B66C66 /* DocumentController.h */,
+				815A0A4414DF214500D29D52 /* WindowController.m */,
+				815A0A4314DF214500D29D52 /* WindowController.h */,
 				815A0A3814DF0AD500D29D52 /* Document.xib */,
 				813748BB14DCA0750077A4A2 /* MainMenu.xib */,
+				818A572A14DFC13D0049E866 /* GEBEncoding */,
 				813748AD14DCA0750077A4A2 /* Supporting Files */,
-				815A0A4314DF214500D29D52 /* WindowController.h */,
-				815A0A4414DF214500D29D52 /* WindowController.m */,
 			);
 			path = TorrentMultiplexer;
 			sourceTree = "<group>";
@@ -216,6 +221,7 @@
 				815A0A4514DF214500D29D52 /* WindowController.m in Sources */,
 				818A572714DFC1350049E866 /* GEBEncoding.m in Sources */,
 				818A572814DFC1350049E866 /* OrderedDictionary.m in Sources */,
+				81CC436E14E13E9F00B66C66 /* DocumentController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
