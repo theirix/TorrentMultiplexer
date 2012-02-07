@@ -7,20 +7,63 @@
 //
 
 #import "WindowController.h"
+#import "Document.h"
 
 @implementation WindowController
 
 @synthesize buttonStartTorrent = _buttonStartTorrent;
 @synthesize comboSeedKind = _comboSeedKind;
 @synthesize matrixTarget = _matrixTarget;
+@synthesize labelFileType = _labelFileType;
+@synthesize labelTorrentName = _labelTorrentName;
+@synthesize imageViewIcon = _imageViewIcon;
+
+- (id)initWithWindowNibName:(NSString*)windowNibName
+{
+    if (self = [super initWithWindowNibName:windowNibName])
+    {
+        dictTorrentType = [NSDictionary dictionaryWithObjectsAndKeys:
+                           @"Torrent file", kTorrentTypeFile,     
+                           @"Magnet link", kTorrentTypeMagnet,   
+                           nil];                           
+        dictImageName = [NSDictionary dictionaryWithObjectsAndKeys:
+                         @"bittorrent", kTorrentTypeFile,     
+                         @"magnet", kTorrentTypeMagnet, 
+                         nil];                           
+    }
+    return self;
+}
 
 - (void)awakeFromNib
 {
     NSLog(@"Awaked"); 
     [[self comboSeedKind] selectItemAtIndex:0];
-    enum TorrentTarget selection = ttQuark;
+    TorrentTarget selection = ttQuark;
     [[self matrixTarget] selectCellAtRow:selection column:0];
     [[self comboSeedKind] setEnabled:(selection == ttQuark)];
+}
+
+- (NSImage*) loadImage:(NSString*)name
+{
+    NSString* imageName = [[NSBundle mainBundle] pathForResource:name ofType:@"png"];
+    NSImage* imageObj = [[NSImage alloc] initWithContentsOfFile:imageName];
+    if (imageObj == nil)
+        @throw [NSException exceptionWithName:@"FileNotFoundException" reason:@"Image not found" userInfo:nil];
+//    [imageObj release];
+    return imageObj;
+}
+
+- (void)windowDidLoad
+{
+    NSLog(@"window loaded");  
+    if ([self document])
+    {
+        NSString *torrentTitle = [(Document*)[self document] nameForTorrent];
+        NSString *type = [[self document] torrentType];
+        [[self labelTorrentName] setStringValue:torrentTitle];
+        [[self labelFileType] setStringValue:[dictTorrentType objectForKey:type]];
+        [[self imageViewIcon] setImage:[self loadImage:[dictImageName objectForKey:type]]];
+    }
 }
 
 - (void)dealloc
@@ -31,7 +74,7 @@
 - (IBAction)selectTargetKind:(id)sender {
     NSInteger targetSelection = [[self matrixTarget] selectedRow];
     NSAssert(targetSelection != -1, @"No radio selection");
-    [[self comboSeedKind] setEnabled:((enum TorrentTarget)targetSelection == ttQuark)];
+    [[self comboSeedKind] setEnabled:((TorrentTarget)targetSelection == ttQuark)];
 }
 
 - (IBAction)performStartTorrent:(id)sender {

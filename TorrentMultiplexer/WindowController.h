@@ -9,18 +9,25 @@
 #import <Cocoa/Cocoa.h>
 
 @interface WindowController : NSWindowController
+{
+    NSDictionary *dictTorrentType;
+    NSDictionary *dictImageName;    
+}
 
-enum TorrentTarget {
+typedef enum {
     ttQuark = 0,
     ttAtom,
     ttLocalFile,
     ttLocalMagnet,
     ttSaveToFile   
-};
+} TorrentTarget;
 
 @property (assign) IBOutlet NSButton *buttonStartTorrent;
 @property (assign) IBOutlet NSComboBox *comboSeedKind;
 @property (assign) IBOutlet NSMatrix *matrixTarget;
+@property (assign) IBOutlet NSTextField *labelFileType;
+@property (assign) IBOutlet NSTextField *labelTorrentName;
+@property (assign) IBOutlet NSImageView *imageViewIcon;
 
 - (IBAction)selectTargetKind:(id)sender;
 - (IBAction)performStartTorrent:(id)sender;

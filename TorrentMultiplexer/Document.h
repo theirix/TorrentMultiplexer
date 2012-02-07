@@ -8,6 +8,18 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface Document : NSDocument
+extern NSString * const kTorrentTypeFile;
+extern NSString * const kTorrentTypeMagnet;
+
+@interface Document : NSDocument {
+
+@private
+    NSObject *torrentDict;
+    NSString *magnetURL;
+    NSString *torrentType;
+}
+
+- (NSString*) nameForTorrent;
+@property(readonly) NSString *torrentType;
 
 @end
