@@ -31,16 +31,6 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
     return self;
 }
 
-- (id)initWithContentsOfURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
-{
-    self = [super initWithContentsOfURL:absoluteURL ofType:typeName error:outError];
-    if (self)
-    {
-        NSLog(@"Init with url %@ type %@", absoluteURL, typeName);
-    }
-    return self;
-}
-
 - (void)dealloc
 {
 //    if (torrentDict)
@@ -111,7 +101,8 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
     }
     else 
     {
-        NSLog(@"%@ <other> %@", prefix, data);
+        //NSLog(@"%@ <other> %@", prefix, data);
+        NSLog(@"%@ <other>", prefix);
     }
 }
 
@@ -134,6 +125,7 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
             }];
             magnetURL = nil;
             readSuccess = torrentDict != NULL;
+            [self inspectTorrentData:torrentDict withLevel:0];
         }
         else if ([torrentType isEqual:kTorrentTypeMagnet])
         {
@@ -143,8 +135,7 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
         }
         else
         {
-            @throw [NSException exceptionWithName:@"NSInternalInconsistencyException"
-                                           reason:@"Wrong document type" userInfo:nil];
+            *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:NULL];
         }
     }
     

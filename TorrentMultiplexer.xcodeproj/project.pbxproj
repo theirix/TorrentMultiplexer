@@ -16,12 +16,13 @@
 		815A0A3914DF0AD500D29D52 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 815A0A3714DF0AD500D29D52 /* Document.m */; };
 		815A0A3A14DF0AD500D29D52 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815A0A3814DF0AD500D29D52 /* Document.xib */; };
 		815A0A4514DF214500D29D52 /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815A0A4414DF214500D29D52 /* WindowController.m */; };
-		818A572714DFC1350049E866 /* GEBEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 818A572414DFC1350049E866 /* GEBEncoding.m */; };
-		818A572814DFC1350049E866 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 818A572614DFC1350049E866 /* OrderedDictionary.m */; };
 		818A573914E070650049E866 /* bittorrent.png in Resources */ = {isa = PBXBuildFile; fileRef = 818A573714E070650049E866 /* bittorrent.png */; };
 		818A573A14E070650049E866 /* magnet.png in Resources */ = {isa = PBXBuildFile; fileRef = 818A573814E070650049E866 /* magnet.png */; };
 		818A573E14E07B770049E866 /* main.icns in Resources */ = {isa = PBXBuildFile; fileRef = 818A573D14E07B770049E866 /* main.icns */; };
 		81CC436E14E13E9F00B66C66 /* DocumentController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC436D14E13E9F00B66C66 /* DocumentController.m */; };
+		81CC437214E186B600B66C66 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC437114E186B600B66C66 /* Util.m */; };
+		81CC437814E1A51500B66C66 /* GEBEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC437514E1A51500B66C66 /* GEBEncoding.m */; };
+		81CC437914E1A51500B66C66 /* OrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CC437714E1A51500B66C66 /* OrderedDictionary.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,15 +44,17 @@
 		815A0A3814DF0AD500D29D52 /* Document.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Document.xib; sourceTree = "<group>"; };
 		815A0A4314DF214500D29D52 /* WindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WindowController.h; sourceTree = "<group>"; };
 		815A0A4414DF214500D29D52 /* WindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WindowController.m; sourceTree = "<group>"; };
-		818A572314DFC1350049E866 /* GEBEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GEBEncoding.h; path = GEBEncoding/GEBEncoding.h; sourceTree = "<group>"; };
-		818A572414DFC1350049E866 /* GEBEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GEBEncoding.m; path = GEBEncoding/GEBEncoding.m; sourceTree = "<group>"; };
-		818A572514DFC1350049E866 /* OrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OrderedDictionary.h; path = GEBEncoding/OrderedDictionary.h; sourceTree = "<group>"; };
-		818A572614DFC1350049E866 /* OrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OrderedDictionary.m; path = GEBEncoding/OrderedDictionary.m; sourceTree = "<group>"; };
 		818A573714E070650049E866 /* bittorrent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bittorrent.png; path = Images/bittorrent.png; sourceTree = "<group>"; };
 		818A573814E070650049E866 /* magnet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = magnet.png; path = Images/magnet.png; sourceTree = "<group>"; };
 		818A573D14E07B770049E866 /* main.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = main.icns; path = Images/main.icns; sourceTree = "<group>"; };
 		81CC436C14E13E9F00B66C66 /* DocumentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentController.h; sourceTree = "<group>"; };
 		81CC436D14E13E9F00B66C66 /* DocumentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentController.m; sourceTree = "<group>"; };
+		81CC437014E186B500B66C66 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		81CC437114E186B600B66C66 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
+		81CC437414E1A51500B66C66 /* GEBEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GEBEncoding.h; sourceTree = "<group>"; };
+		81CC437514E1A51500B66C66 /* GEBEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GEBEncoding.m; sourceTree = "<group>"; };
+		81CC437614E1A51500B66C66 /* OrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderedDictionary.h; sourceTree = "<group>"; };
+		81CC437714E1A51500B66C66 /* OrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderedDictionary.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +72,7 @@
 		8137489714DCA0750077A4A2 = {
 			isa = PBXGroup;
 			children = (
+				81CC437314E1A51500B66C66 /* GEBEncoding */,
 				813748AC14DCA0750077A4A2 /* TorrentMultiplexer */,
 				813748A514DCA0750077A4A2 /* Frameworks */,
 				813748A314DCA0750077A4A2 /* Products */,
@@ -115,8 +119,9 @@
 				815A0A4314DF214500D29D52 /* WindowController.h */,
 				815A0A3814DF0AD500D29D52 /* Document.xib */,
 				813748BB14DCA0750077A4A2 /* MainMenu.xib */,
-				818A572A14DFC13D0049E866 /* GEBEncoding */,
 				813748AD14DCA0750077A4A2 /* Supporting Files */,
+				81CC437014E186B500B66C66 /* Util.h */,
+				81CC437114E186B600B66C66 /* Util.m */,
 			);
 			path = TorrentMultiplexer;
 			sourceTree = "<group>";
@@ -136,15 +141,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		818A572A14DFC13D0049E866 /* GEBEncoding */ = {
+		81CC437314E1A51500B66C66 /* GEBEncoding */ = {
 			isa = PBXGroup;
 			children = (
-				818A572314DFC1350049E866 /* GEBEncoding.h */,
-				818A572414DFC1350049E866 /* GEBEncoding.m */,
-				818A572514DFC1350049E866 /* OrderedDictionary.h */,
-				818A572614DFC1350049E866 /* OrderedDictionary.m */,
+				81CC437414E1A51500B66C66 /* GEBEncoding.h */,
+				81CC437514E1A51500B66C66 /* GEBEncoding.m */,
+				81CC437614E1A51500B66C66 /* OrderedDictionary.h */,
+				81CC437714E1A51500B66C66 /* OrderedDictionary.m */,
 			);
-			name = GEBEncoding;
+			path = GEBEncoding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,9 +224,10 @@
 				813748BA14DCA0750077A4A2 /* AppDelegate.m in Sources */,
 				815A0A3914DF0AD500D29D52 /* Document.m in Sources */,
 				815A0A4514DF214500D29D52 /* WindowController.m in Sources */,
-				818A572714DFC1350049E866 /* GEBEncoding.m in Sources */,
-				818A572814DFC1350049E866 /* OrderedDictionary.m in Sources */,
 				81CC436E14E13E9F00B66C66 /* DocumentController.m in Sources */,
+				81CC437214E186B600B66C66 /* Util.m in Sources */,
+				81CC437814E1A51500B66C66 /* GEBEncoding.m in Sources */,
+				81CC437914E1A51500B66C66 /* OrderedDictionary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

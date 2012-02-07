@@ -1,0 +1,3 @@
+[submodule "GEBEncoding"]
+	path = GEBEncoding
+	url = git://github.com/aidansteele/GEBEncoding.git
