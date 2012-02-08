@@ -21,6 +21,8 @@ extern NSString * const kTorrentTypeMagnet;
 
 - (NSString*) nameForTorrent;
 - (NSURL*) announceURL;
+- (NSData*) magnetToLibtorrentBencoded;
+- (NSString*) magnetHash;
 
 @property(readonly) NSString *torrentType;
 @property(readonly) NSURL *magnetURL;

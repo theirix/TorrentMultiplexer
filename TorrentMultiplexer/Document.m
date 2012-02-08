@@ -107,6 +107,14 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
     }
 }
 
+// this method is not used
+- (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
+{
+    NSLog(@"Readind from data document type %@", torrentType); 
+    if (outError)
+       *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:NULL];
+    return NO;
+}
 
 - (BOOL)readFromURL:(NSURL *)absoluteURL ofType:(NSString *)typeName error:(NSError **)outError
 {
@@ -115,7 +123,7 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
     if (absoluteURL)
     {   
         torrentType = [typeName copy];
-        NSLog(@"Readind document type %@, url %@", torrentType, absoluteURL);        
+        NSLog(@"Readind from url document type %@, url %@", torrentType, absoluteURL);        
         if ([torrentType isEqual:kTorrentTypeFile])
         {
             NSData *fileData = [NSData dataWithContentsOfURL:absoluteURL];
@@ -126,12 +134,12 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
             }];
             magnetURL = nil;
             readSuccess = torrentDict != NULL;
-            [self inspectTorrentData:torrentDict withLevel:0];
+            //[self inspectTorrentData:torrentDict withLevel:0];
         }
         else if ([torrentType isEqual:kTorrentTypeMagnet])
         {
-            torrentDict = nil;
             magnetURL = [absoluteURL copy];
+            torrentDict = nil;
             readSuccess = absoluteURL != NULL;
         }
         else
@@ -154,6 +162,17 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
 + (BOOL)autosavesInPlace
 {
     return NO;
+}
+
+- (NSData*) magnetToLibtorrentBencoded
+{
+    NSData *data = nil;
+    if ([torrentType isEqual:kTorrentTypeMagnet])
+    {
+        data = [GEBEncoding encodedDataFromObject:
+                [NSDictionary dictionaryWithObject:[magnetURL absoluteString] forKey:@"magnet-uri"]];
+    }
+    return data;
 }
 
 - (NSString*) nameForTorrent
@@ -192,5 +211,37 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
     }
     return nil;
 }
+
+
+- (NSDictionary*) splitURIQuery:(NSString*)query
+{
+    NSArray *queryPairs = [query componentsSeparatedByString:@"&"];
+    NSMutableDictionary *pairs = [NSMutableDictionary dictionary];
+    for (NSString *queryPair in queryPairs) {
+        NSArray *bits = [queryPair componentsSeparatedByString:@"="];
+        if ([bits count] != 2) { continue; }
+        
+        NSString *key = [[bits objectAtIndex:0] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        NSString *value = [[bits objectAtIndex:1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        
+        [pairs setObject:value forKey:key];
+    }
+    return pairs;
+}
+
+- (NSString *)magnetHash
+{
+    if ([torrentType isEqual:kTorrentTypeMagnet])
+    {
+        NSString *queryString = [[magnetURL absoluteString] stringByReplacingOccurrencesOfString:
+                                 @"magnet:?" withString:@""];
+        NSDictionary *queries = [self splitURIQuery:queryString];
+        NSString *hash = [queries valueForKey:@"xt"];
+        return hash;
+    }
+    else
+        return @"";
+}
+
 
 @end

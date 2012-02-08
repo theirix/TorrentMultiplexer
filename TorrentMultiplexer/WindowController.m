@@ -93,7 +93,7 @@
 - (NSString *)windowTitleForDocumentDisplayName:(NSString *)displayName
 {
     if ([[[self document] torrentType] isEqual:kTorrentTypeMagnet])
-        return [[[self document] magnetURL] absoluteString];
+        return [[self document] magnetHash];
     else
         return [super windowTitleForDocumentDisplayName:displayName];
 }
@@ -138,8 +138,8 @@
                 {
                     [savePanel orderOut:[self window]];
                     NSURL *targetURL = [savePanel URL];
-                    NSString *content = [[[self document] fileURL] absoluteString];
-                    [content writeToURL:targetURL atomically:YES encoding:NSUTF8StringEncoding error:&error];
+                    NSData* content = [[self document] magnetToLibtorrentBencoded];
+                    [content writeToURL:targetURL options:NSDataWritingAtomic error:&error];
                 }
             }];
             

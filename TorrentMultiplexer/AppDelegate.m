@@ -65,8 +65,10 @@
             urlString = [directObject stringValue];
         if (urlString)
         {
-           [[NSDocumentController sharedDocumentController]
-                openDocumentWithContentsOfURL:[NSURL URLWithString:urlString] display:YES completionHandler:nil];
+            NSURL *url = [NSURL URLWithString:
+                          [urlString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+           [[NSDocumentController sharedDocumentController]openDocumentWithContentsOfURL:url 
+                                                                                 display:YES completionHandler:nil];
         }
     }
 }
