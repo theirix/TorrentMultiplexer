@@ -216,7 +216,14 @@
     int status = [taskCopy terminationStatus];
     
     if (status == 0)
+    {
         NSLog(@"Task succeeded.");
+        NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText:@"Torrent successfully copied to the server"];
+        [alert setAlertStyle:NSInformationalAlertStyle];
+        [alert runModal];
+    }
     else
         *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorNetworkConnectionLost userInfo:NULL];
 }
