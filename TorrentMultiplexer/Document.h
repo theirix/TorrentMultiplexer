@@ -24,6 +24,11 @@ extern NSString * const kTorrentTypeMagnet;
 - (NSData*) magnetToLibtorrentBencoded;
 - (NSString*) magnetHash;
 
+// Actually it saves a magnet link to a file
+- (NSURL*)makeFileURL:(NSError**)outError;
+
+- (NSString *)displayName;
+
 @property(readonly) NSString *torrentType;
 @property(readonly) NSURL *magnetURL;
 

@@ -143,7 +143,8 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
         }
         else
         {
-            *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:NULL];
+            if (outError)
+                *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:NULL];
         }
     }
     
@@ -242,5 +243,40 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
         return @"";
 }
 
+- (NSURL*)makeFileURL:(NSError**)outError
+{
+    if ([torrentType isEqualToString:kTorrentTypeFile])
+    {
+        return [self fileURL];
+    }
+    
+    if ([torrentType isEqualToString:kTorrentTypeMagnet])
+    {
+        NSString *tempTorrentFile = [NSTemporaryDirectory() stringByAppendingPathComponent: [NSString stringWithFormat: @"magnet-%.0f.%@", [NSDate timeIntervalSinceReferenceDate] * 1000.0, @"torrent"]];
+        NSLog(@"Saving magnet to temp file %@", tempTorrentFile);
+        
+        NSURL *url = [NSURL fileURLWithPath:tempTorrentFile];
+        NSData *content = [self magnetToLibtorrentBencoded];
+        if ([content writeToURL:url options:NSDataWritingAtomic error:outError])
+            return url;
+    }
+    return nil;
+}
+
+- (NSString *)displayName
+{
+    if ([torrentType isEqualToString:kTorrentTypeFile])
+    {
+        return [[[[[self fileURL] absoluteString] 
+                  stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding]
+                    lastPathComponent] 
+                        stringByDeletingPathExtension];
+    }
+    if ([torrentType isEqualToString:kTorrentTypeMagnet])
+    {
+        return [self magnetHash];
+    }
+    return @"Untitled";
+}
 
 @end

@@ -10,6 +10,7 @@
 
 @interface WindowController : NSWindowController
 {
+@private
     NSDictionary *dictTorrentType;
     NSDictionary *dictImageName;
 }
@@ -30,11 +31,7 @@ typedef enum {
 @property (assign) IBOutlet NSTextField *labelTorrentAnnounce;
 @property (assign) IBOutlet NSImageView *imageViewIcon;
 
-
 - (IBAction)selectTargetKind:(id)sender;
 - (IBAction)performStartTorrent:(id)sender;
-
-- (void)copyTorrentToServer:(NSString*)serverMask withSeedKind:(NSString*)seedKind error:(NSError**)outError;
-- (void)openDocumentWithApplicaton:(NSString*)bundleId error:(NSError**)outError;
 
 @end

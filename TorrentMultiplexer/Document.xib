@@ -64,7 +64,6 @@
 							<string key="NSFrame">{{232, 12}, {212, 32}}</string>
 							<reference key="NSSuperview" ref="828736080"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:687</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="219471110">
@@ -89,15 +88,15 @@
 						<object class="NSTextField" id="109077444">
 							<reference key="NSNextResponder" ref="828736080"/>
 							<int key="NSvFlags">266</int>
-							<string key="NSFrame">{{70, 181}, {352, 17}}</string>
+							<string key="NSFrame">{{70, 181}, {379, 17}}</string>
 							<reference key="NSSuperview" ref="828736080"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="984368471"/>
 							<string key="NSReuseIdentifierKey">_NS:3944</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="950988846">
-								<int key="NSCellFlags">68288064</int>
-								<int key="NSCellFlags2">272630784</int>
+								<int key="NSCellFlags">67239424</int>
+								<int key="NSCellFlags2">272630528</int>
 								<string key="NSContents">Name</string>
 								<reference key="NSSupport" ref="878579909"/>
 								<string key="NSCellIdentifier">_NS:3944</string>
@@ -125,15 +124,15 @@
 						<object class="NSTextField" id="984368471">
 							<reference key="NSNextResponder" ref="828736080"/>
 							<int key="NSvFlags">266</int>
-							<string key="NSFrame">{{70, 162}, {352, 17}}</string>
+							<string key="NSFrame">{{70, 162}, {379, 17}}</string>
 							<reference key="NSSuperview" ref="828736080"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="433019096"/>
 							<string key="NSReuseIdentifierKey">_NS:3944</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="60346468">
-								<int key="NSCellFlags">68288064</int>
-								<int key="NSCellFlags2">272630784</int>
+								<int key="NSCellFlags">67239424</int>
+								<int key="NSCellFlags2">272630528</int>
 								<string key="NSContents">Announce</string>
 								<reference key="NSSupport" ref="878579909"/>
 								<string key="NSCellIdentifier">_NS:3944</string>

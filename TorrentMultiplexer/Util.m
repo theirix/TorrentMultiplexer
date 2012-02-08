@@ -8,8 +8,6 @@
 
 #import "Util.h"
 
-NSString * const APPId = @"ru.omniverse.TorrentMultiplexer";
-
 NSString * const PREFAppTorrent = @"AppTorrent";
 NSString * const PREFAppMagnet = @"AppMagnet";
 NSString * const PREFMaskQuark = @"MaskQuark";
@@ -17,28 +15,24 @@ NSString * const PREFMaskAtom = @"MaskAtom";
 
 @implementation Util
 
-+ (void)makeError:(NSString*)description  error:(NSError**)outError
++ (NSError*)makeError:(NSString*)description
 {
     NSDictionary *dict = [NSDictionary dictionaryWithObject:description forKey:NSLocalizedDescriptionKey];
-    if (outError)
-        *outError = [NSError errorWithDomain:APPId code:0 userInfo:dict];   
+    NSString *appID = [[NSBundle mainBundle] bundleIdentifier];
+    return [NSError errorWithDomain:appID code:0 userInfo:dict];
 }
 
-+ (void)makeErrorFromStatus:(OSStatus)status error:(NSError**)outError
++ (NSError*)makeErrorFromStatus:(OSStatus)status
 {
-    if (outError)
-    {
-        if (status != 0)
-            *outError = [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:NULL];
-        else
-            *outError = nil;
-    }
+    if (status != 0)
+        return [NSError errorWithDomain:NSOSStatusErrorDomain code:status userInfo:NULL];
+    else
+        return nil;
 }
 
 + (void)checkError:(OSStatus)status withResponder:(NSResponder*)responder
 {
-    NSError *error;
-    [Util makeErrorFromStatus:status error:&error];
+    NSError *error = [Util makeErrorFromStatus:status];
     if (error)
         [responder presentError:error];
 }

@@ -13,6 +13,7 @@
 		813748B714DCA0750077A4A2 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 813748B514DCA0750077A4A2 /* Credits.rtf */; };
 		813748BA14DCA0750077A4A2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 813748B914DCA0750077A4A2 /* AppDelegate.m */; };
 		813748BD14DCA0750077A4A2 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 813748BB14DCA0750077A4A2 /* MainMenu.xib */; };
+		814A256414E2ACF70010BAD0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 814A256314E2ACF70010BAD0 /* README.md */; };
 		815A0A3914DF0AD500D29D52 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 815A0A3714DF0AD500D29D52 /* Document.m */; };
 		815A0A3A14DF0AD500D29D52 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815A0A3814DF0AD500D29D52 /* Document.xib */; };
 		815A0A4514DF214500D29D52 /* WindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815A0A4414DF214500D29D52 /* WindowController.m */; };
@@ -41,6 +42,7 @@
 		813748B814DCA0750077A4A2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		813748B914DCA0750077A4A2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		813748BC14DCA0750077A4A2 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		814A256314E2ACF70010BAD0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		815A0A3614DF0AD500D29D52 /* Document.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Document.h; sourceTree = "<group>"; };
 		815A0A3714DF0AD500D29D52 /* Document.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Document.m; sourceTree = "<group>"; };
 		815A0A3814DF0AD500D29D52 /* Document.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Document.xib; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 		8137489714DCA0750077A4A2 = {
 			isa = PBXGroup;
 			children = (
+				814A256314E2ACF70010BAD0 /* README.md */,
 				81CC437314E1A51500B66C66 /* GEBEncoding */,
 				813748AC14DCA0750077A4A2 /* TorrentMultiplexer */,
 				813748A514DCA0750077A4A2 /* Frameworks */,
@@ -219,6 +222,7 @@
 				818A573A14E070650049E866 /* magnet.png in Resources */,
 				818A573E14E07B770049E866 /* main.icns in Resources */,
 				81C8578614E1AD1A002CA8E5 /* Preferences.xib in Resources */,
+				814A256414E2ACF70010BAD0 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,7 +16,5 @@ GEBEncoding with a stability fix.
 
   * Fight a bug with reopening documents on Lion
 
-  * Send magnet links to servers in one click instead of saving them to file
-
 <!--vim: ft=markdown, expandtab -->
 

@@ -10,6 +10,16 @@
 #import "Document.h"
 #import "Util.h"
 
+@interface WindowController (PRIVATE)
+
+- (NSImage*) loadImage:(NSString*)name;
+- (BOOL)copyTorrentToServer:(NSString*)maskKey error:(NSError**)outError;
+- (BOOL)copyTorrentFromURL:(NSURL*)url toServer:(NSString*)serverMask 
+              withSeedKind:(NSString*)seedKind error:(NSError**)outError;
+- (BOOL)openDocumentWithApplicaton:(NSString*)bundleId error:(NSError**)outError;
+
+@end
+
 @implementation WindowController
 
 @synthesize buttonStartTorrent = _buttonStartTorrent;
@@ -59,17 +69,25 @@
         else
             torrentAnnounce = @"";        
         
-        TorrentTarget seedKindSelection = [type isEqual:kTorrentTypeFile] ? ttQuark: ttSaveToFile;
-
+        TorrentTarget seedKindSelection = ttQuark;
+        for (NSInteger i = 0; i < ([[self matrixTarget] cellSize]).height; ++i)
+        {
+            if ([[[self matrixTarget] cellAtRow:i column:0] isEnabled])
+            {
+                seedKindSelection = (TorrentTarget)i;
+                break;
+            }
+        }
+        
         [[self labelTorrentName] setStringValue:torrentTitle];
         [[self labelTorrentType] setStringValue:[dictTorrentType objectForKey:type]];
         [[self labelTorrentAnnounce] setStringValue:torrentAnnounce];        
         [[self imageViewIcon] setImage:[self loadImage:[dictImageName objectForKey:type]]];
         
         BOOL flag = [type isEqualToString:kTorrentTypeFile];
-        [[[self matrixTarget] cellAtRow:ttQuark column:0] setEnabled:flag];
-        [[[self matrixTarget] cellAtRow:ttAtom column:0] setEnabled:flag];
-        [[[self matrixTarget] cellAtRow:ttLocalFile column:0] setEnabled:flag];        
+        [[[self matrixTarget] cellAtRow:ttQuark column:0] setEnabled:YES];
+        [[[self matrixTarget] cellAtRow:ttAtom column:0] setEnabled:YES];
+        [[[self matrixTarget] cellAtRow:ttLocalFile column:0] setEnabled:flag];
         [[[self matrixTarget] cellAtRow:ttLocalMagnet column:0] setEnabled:!flag]; 
         [[[self matrixTarget] cellAtRow:ttSaveToFile column:0] setEnabled:!flag];
         
@@ -85,13 +103,13 @@
     [super dealloc];
 }
 
-- (NSString *)windowTitleForDocumentDisplayName:(NSString *)displayName
-{
-    if ([[[self document] torrentType] isEqual:kTorrentTypeMagnet])
-        return [[self document] magnetHash];
-    else
-        return [super windowTitleForDocumentDisplayName:displayName];
-}
+//- (NSString *)windowTitleForDocumentDisplayName:(NSString *)displayName
+//{
+//    if ([[[self document] torrentType] isEqual:kTorrentTypeMagnet])
+//        return [[self document] magnetHash];
+//    else
+//        return [super windowTitleForDocumentDisplayName:displayName];
+//}
 
 - (IBAction)selectTargetKind:(id)sender {
     NSInteger seedKindSelection = [[self matrixTarget] selectedRow];
@@ -100,29 +118,24 @@
 }
 
 - (IBAction)performStartTorrent:(id)sender {
-    NSString* selection = [[self comboSeedKind] objectValueOfSelectedItem];
-    
     TorrentTarget seedKindSelection = (TorrentTarget)[[self matrixTarget] selectedRow];
-    NSString *type = [[self document] torrentType];
     
     __block NSError *error = nil;
     switch (seedKindSelection)
     {
         case ttQuark:
         {
-            NSString *serverMask = [[NSUserDefaults standardUserDefaults] stringForKey:PREFMaskQuark];
-            [self copyTorrentToServer:serverMask withSeedKind:selection error:&error];
+            [self copyTorrentToServer:PREFMaskQuark error:&error];
             break;
         }
         case ttAtom:
         {
-            NSString *serverMask = [[NSUserDefaults standardUserDefaults] stringForKey:PREFMaskAtom];
-            [self copyTorrentToServer:serverMask withSeedKind:selection error:&error];
+            [self copyTorrentToServer:PREFMaskAtom error:&error];
             break;
         }
         case ttSaveToFile:
         {
-            NSAssert([type isEqualToString:kTorrentTypeMagnet], @"Wrong torrent type");
+            NSAssert([[[self document] torrentType] isEqualToString:kTorrentTypeMagnet], @"Wrong torrent type");
             NSLog(@"Saving magnet to file");
             NSSavePanel *savePanel = [NSSavePanel savePanel];
             [savePanel setAllowedFileTypes:[NSArray arrayWithObject:@"torrent"]];
@@ -157,17 +170,17 @@
     }
     if (error)
         [self presentError:error];  
-
 }
 
-- (void)openDocumentWithApplicaton:(NSString*)bundleId error:(NSError**)outError
+- (BOOL)openDocumentWithApplicaton:(NSString*)bundleId error:(NSError**)outError
 {
     NSLog(@"Opening document in application: %@", bundleId);
     
     if (bundleId == nil || [bundleId length] == 0)
     {
-        [Util makeError:@"No local application specified.\nPlease check preferences" error:outError];
-        return;
+        if (outError)
+            *outError = [Util makeError:@"No local application specified.\nPlease check preferences"];
+        return NO;
     }
     
     LSLaunchURLSpec launchSpec;
@@ -176,56 +189,76 @@
     OSStatus status = LSFindApplicationForInfo(kLSUnknownCreator, (CFStringRef)bundleId, 
                                       NULL, NULL, &launchSpec.appURL);
     if (status) {
-        [Util makeErrorFromStatus:status error:outError];
-        return;
+        if (outError)
+            *outError = [Util makeErrorFromStatus:status];
+        return NO;
     }
     
     status = LSOpenFromURLSpec(&launchSpec, NULL);
     if (status) {
-        [Util makeErrorFromStatus:status error:outError];
-        return;
+        if (outError)
+            *outError = [Util makeErrorFromStatus:status];
+        return NO;
     }
+    return YES;
 }
 
-- (void)copyTorrentToServer:(NSString*)serverMask withSeedKind:(NSString*)seedKind error:(NSError**)outError
+- (BOOL)copyTorrentFromURL:(NSURL*)url toServer:(NSString*)serverMask 
+              withSeedKind:(NSString*)seedKind error:(NSError**)outError
 {
-    NSAssert(outError, @"No error");
-    
-//    NSString *serverPathFormat = @"%@.omniverse.ru:rtorrent/watch-%@";
     if (serverMask == nil || [serverMask length] == 0)
     {
-        [Util makeError:@"No server mask specified.\nPlease check preferences" error:outError];
-        return;
+        if (outError)
+            *outError = [Util makeError:@"No server mask specified.\nPlease check preferences"];
+        return NO;
     }
-        
+    
     NSString *serverPath = [NSString stringWithFormat:serverMask, seedKind];
     
-    NSLog(@"Copying torrent to server: %@", serverPath);
+    NSLog(@"Copying torrent to server: %@ from url: %@", serverPath, url);
     
     NSMutableArray *args = [NSMutableArray array];
-    [args addObject:[[[self document] fileURL] path]];
+    [args addObject:[url path]];
     [args addObject:serverPath];
-
+    
     NSTask *taskCopy = [[NSTask alloc] init];
     [taskCopy setArguments:args];
     [taskCopy setLaunchPath:@"/usr/bin/scp"];
-
+    
     [taskCopy launch];
     [taskCopy waitUntilExit];
     
     int status = [taskCopy terminationStatus];
+    [taskCopy release];
     
-    if (status == 0)
+    if (status != 0)
     {
-        NSLog(@"Task succeeded.");
-        NSAlert *alert = [[[NSAlert alloc] init] autorelease];
-        [alert addButtonWithTitle:@"OK"];
-        [alert setMessageText:@"Torrent successfully copied to the server"];
-        [alert setAlertStyle:NSInformationalAlertStyle];
-        [alert runModal];
+        if (outError)
+            *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorNetworkConnectionLost userInfo:NULL];   
+        return NO;
     }
-    else
-        *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorNetworkConnectionLost userInfo:NULL];
+    NSLog(@"Task succeeded.");
+    NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+    [alert addButtonWithTitle:@"OK"];
+    [alert setMessageText:@"Torrent successfully copied to the server"];
+    [alert setAlertStyle:NSInformationalAlertStyle];
+    [alert runModal];
+    return YES;
 }
+
+- (BOOL)copyTorrentToServer:(NSString*)maskKey error:(NSError**)outError
+{
+    NSString* selection = [[self comboSeedKind] objectValueOfSelectedItem];    
+    NSString *serverMask = [[NSUserDefaults standardUserDefaults] stringForKey:maskKey];
+    NSURL *fileURL = [[self document] makeFileURL:outError];
+    if (outError && *outError)
+        return NO;
+    [self copyTorrentFromURL:fileURL toServer:serverMask withSeedKind:selection error:outError];
+    if (outError && *outError)
+        return NO;
+    return YES;
+
+}
+
 
 @end
