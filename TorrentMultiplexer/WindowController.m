@@ -36,11 +36,6 @@
     return self;
 }
 
-- (void)awakeFromNib
-{
-    NSLog(@"Awaked"); 
-}
-
 - (NSImage*) loadImage:(NSString*)name
 {
     NSString* imageName = [[NSBundle mainBundle] pathForResource:name ofType:@"png"];
@@ -53,7 +48,7 @@
 
 - (void)windowDidLoad
 {
-    NSLog(@"window loaded");  
+    NSLog(@"Loading UI");  
     if ([self document])
     {
         NSString *type = [[self document] torrentType];
@@ -106,7 +101,6 @@
 
 - (IBAction)performStartTorrent:(id)sender {
     NSString* selection = [[self comboSeedKind] objectValueOfSelectedItem];
-    NSLog(@"Selected: %@", selection); 
     
     TorrentTarget seedKindSelection = (TorrentTarget)[[self matrixTarget] selectedRow];
     NSString *type = [[self document] torrentType];

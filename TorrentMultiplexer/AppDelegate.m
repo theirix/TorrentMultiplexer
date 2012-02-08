@@ -16,7 +16,6 @@
 
 - (id)init
 {
-    NSLog(@"AppDelegate:init");
     if (self = [super init])
     {
         [[NSAppleEventManager sharedAppleEventManager] setEventHandler:self

@@ -23,7 +23,6 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
 {
     self = [super init];
     if (self) {
-        NSLog(@"Doc init");
         torrentDict = nil;
         magnetURL = nil;
         torrentType = nil;
@@ -110,7 +109,7 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
 // this method is not used
 - (BOOL)readFromData:(NSData *)data ofType:(NSString *)typeName error:(NSError **)outError
 {
-    NSLog(@"Readind from data document type %@", torrentType); 
+    NSLog(@"Reading from data document of type %@", torrentType); 
     if (outError)
        *outError = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:NULL];
     return NO;
@@ -123,7 +122,7 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
     if (absoluteURL)
     {   
         torrentType = [typeName copy];
-        NSLog(@"Readind from url document type %@, url %@", torrentType, absoluteURL);        
+        NSLog(@"Readind from url document of type %@, url %@", torrentType, absoluteURL);        
         if ([torrentType isEqual:kTorrentTypeFile])
         {
             NSData *fileData = [NSData dataWithContentsOfURL:absoluteURL];
