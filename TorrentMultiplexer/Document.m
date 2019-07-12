@@ -131,6 +131,7 @@ NSString * const kTorrentTypeMagnet = @"BitTorrent Magnet URL";
                 ? GEBEncodedDataType
                 : GEBEncodedStringType;            
             }];
+            torrentDict = [torrentDict copy];
             magnetURL = nil;
             readSuccess = torrentDict != NULL;
             //[self inspectTorrentData:torrentDict withLevel:0];
